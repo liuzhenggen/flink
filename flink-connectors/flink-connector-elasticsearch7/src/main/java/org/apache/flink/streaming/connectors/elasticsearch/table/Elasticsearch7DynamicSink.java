@@ -119,14 +119,16 @@ final class Elasticsearch7DynamicSink implements DynamicTableSink {
             SerializationSchema<RowData> format =
                     this.format.createRuntimeEncoder(context, schema.toRowDataType());
 
-            final RowElasticsearchSinkFunction upsertFunction =
-                    new RowElasticsearchSinkFunction(
+            final RowElasticsearch7SinkFunction upsertFunction =
+                    new RowElasticsearch7SinkFunction(
                             IndexGeneratorFactory.createIndexGenerator(config.getIndex(), schema),
                             null, // this is deprecated in es 7+
                             format,
                             XContentType.JSON,
                             REQUEST_FACTORY,
-                            KeyExtractor.createKeyExtractor(schema, config.getKeyDelimiter()));
+                            KeyExtractor.createKeyExtractor(schema, config.getKeyDelimiter()),
+                            RoutingExtractor.createRoutingExtractor(
+                                    schema, config.getRoutingField()));
 
             final ElasticsearchSink.Builder<RowData> builder =
                     builderProvider.createBuilder(config.getHosts(), upsertFunction);

@@ -28,12 +28,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.apache.flink.streaming.connectors.elasticsearch.table.ElasticsearchOptions.HOSTS_OPTION;
+import static org.apache.flink.streaming.connectors.elasticsearch.table.ElasticsearchOptions.ROUTING_FIELD_OPTION;
 
 /** Elasticsearch 7 specific configuration. */
 @Internal
 final class Elasticsearch7Configuration extends ElasticsearchConfiguration {
     Elasticsearch7Configuration(ReadableConfig config, ClassLoader classLoader) {
         super(config, classLoader);
+    }
+
+    public String getRoutingField() {
+        return config.get(ROUTING_FIELD_OPTION);
     }
 
     public List<HttpHost> getHosts() {

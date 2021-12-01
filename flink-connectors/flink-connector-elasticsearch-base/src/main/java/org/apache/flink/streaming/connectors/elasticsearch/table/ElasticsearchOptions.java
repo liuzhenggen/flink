@@ -75,6 +75,11 @@ public class ElasticsearchOptions {
                     .defaultValue("_")
                     .withDescription(
                             "Delimiter for composite keys e.g., \"$\" would result in IDs \"KEY1$KEY2$KEY3\".");
+    public static final ConfigOption<String> ROUTING_FIELD_OPTION =
+            ConfigOptions.key("routing-field")
+                    .stringType()
+                    .defaultValue(null)
+                    .withDescription("Routing field from source.");
     public static final ConfigOption<String> FAILURE_HANDLER_OPTION =
             ConfigOptions.key("failure-handler")
                     .stringType()
