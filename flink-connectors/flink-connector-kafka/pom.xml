@@ -27,7 +27,7 @@ under the License.
 		<artifactId>flink-connectors</artifactId>
 		<groupId>org.apache.flink</groupId>
 		<version>1.13.3</version>
-		<relativePath>..</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
